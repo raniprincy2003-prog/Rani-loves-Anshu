@@ -1,83 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>For Anshu ❤️</title>
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 body{
-overflow:hidden;
 height:100vh;
-font-family:Arial,sans-serif;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-position:relative;
-}
-.bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url('photo.jpg');
-background-size:cover;
-background-position:center;
-filter:blur(12px) brightness(.35);
-z-index:-2;
-}
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
 background:linear-gradient(
-135deg,
-rgba(255,0,100,.25),
-rgba(130,0,255,.25)
+-45deg,
+#ff4d6d,
+#ff758f,
+#c9184a,
+#7209b7,
+#560bad
 );
-z-index:-1;
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+color:white;
+}
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 .card{
 width:90%;
-max-width:750px;
+max-width:700px;
+padding:35px;
 text-align:center;
-padding:30px;
-border-radius:30px;
 background:rgba(255,255,255,.12);
 backdrop-filter:blur(15px);
+border-radius:25px;
 box-shadow:
-0 0 40px rgba(255,255,255,.15);
-color:white;
-z-index:5;
+0 0 30px rgba(255,255,255,.15);
 }
-.photo{
-width:220px;
-height:220px;
-object-fit:cover;
-border-radius:50%;
-border:6px solid white;
-box-shadow:
-0 0 20px pink,
-0 0 50px hotpink,
-0 0 80px #ff69b4;
-animation:float 4s ease-in-out infinite;
-}
-@keyframes float{
-50%{
-transform:translateY(-10px);
-}
-}
-.title{
-margin-top:20px;
+h1{
 font-size:3rem;
-font-weight:bold;
 text-shadow:
 0 0 10px white,
 0 0 20px pink,
@@ -91,16 +60,16 @@ transform:scale(1.05);
 }
 button{
 margin-top:25px;
-padding:16px 32px;
-border:none;
-border-radius:50px;
+padding:16px 35px;
 font-size:1.1rem;
 font-weight:bold;
+border:none;
+border-radius:50px;
 cursor:pointer;
 background:white;
-color:#ff3d7f;
+color:#ff4081;
 box-shadow:
-0 0 15px white,
+0 0 20px white,
 0 0 30px pink;
 transition:.3s;
 }
@@ -108,22 +77,21 @@ button:hover{
 transform:scale(1.08);
 }
 .message{
-opacity:0;
-max-height:0;
-overflow:hidden;
-transition:all 2s ease;
+display:none;
+margin-top:25px;
 font-size:1.3rem;
 line-height:1.8;
-margin-top:25px;
+animation:fade 2s forwards;
 }
-.message.show{
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
 opacity:1;
-max-height:600px;
+transform:translateY(0);
 }
-.footer{
-margin-top:25px;
-font-size:.95rem;
-opacity:.85;
 }
 .heart,.rose{
 position:absolute;
@@ -139,32 +107,14 @@ rotate(360deg);
 opacity:0;
 }
 }
-.sparkle{
-position:absolute;
-pointer-events:none;
-animation:spark 1.2s forwards;
-}
-@keyframes spark{
-0%{
-opacity:1;
-transform:scale(1);
-}
-100%{
-opacity:0;
-transform:scale(2.5);
-}
-}
 </style>
 </head>
 <body>
-<div class="bg"></div>
-<div class="overlay"></div>
 <div class="card">
-<img src="photo.jpg" class="photo">
-<div class="title">
+<h1>
 ❤️ I Love You So Much Anshu ❤️
-</div>
-<button id="openBtn" onclick="openHeart()">
+</h1>
+<button onclick="openHeart()">
 💖 Unlock My Heart 💖
 </button>
 <div class="message" id="msg">
@@ -181,22 +131,12 @@ you will always have a special place in my heart.
 🌹 Forever & Always 🌹
 
 </div>
-<div class="footer">
-Made with ❤️ just for Anshu
 </div>
-</div>
-<audio id="music" loop>
-<source src="song.mp3" type="audio/mpeg">
-</audio>
 <script>
 function openHeart(){
-document.getElementById("openBtn").style.display="none";
-document.getElementById("msg")
-.classList.add("show");
-document.getElementById("music")
-.play();
+document.getElementById("msg").style.display="block";
 }
-function createHeart(){
+function heart(){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
@@ -210,33 +150,22 @@ setTimeout(()=>{
 h.remove();
 },10000);
 }
-function createRose(){
+function rose(){
 let r=document.createElement("div");
 r.className="rose";
 r.innerHTML="🌹";
 r.style.left=Math.random()*100+"vw";
 r.style.fontSize=
-(18+Math.random()*18)+"px";
+(18+Math.random()*15)+"px";
 r.style.animationDuration=
-(7+Math.random()*5)+"s";
+(6+Math.random()*5)+"s";
 document.body.appendChild(r);
 setTimeout(()=>{
 r.remove();
-},12000);
+},11000);
 }
-setInterval(createHeart,250);
-setInterval(createRose,800);
-document.addEventListener("click",(e)=>{
-let s=document.createElement("div");
-s.className="sparkle";
-s.innerHTML="✨";
-s.style.left=e.pageX+"px";
-s.style.top=e.pageY+"px";
-document.body.appendChild(s);
-setTimeout(()=>{
-s.remove();
-},1200);
-});
+setInterval(heart,250);
+setInterval(rose,700);
 </script>
 </body>
 </html>
