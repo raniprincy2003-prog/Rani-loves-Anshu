@@ -1,45 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>For Anshu ❤️</title>
+
 <style>
 body{
+margin:0;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial,sans-serif;
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
 text-align:center;
-font-family:Arial;
-background:pink;
-padding-top:100px;
+z-index:10;
+color:white;
+padding:20px;
 }
+
 h1{
-color:red;
-font-size:40px;
+font-size:3rem;
+text-shadow:0 0 20px rgba(255,255,255,0.9);
+animation:pulse 2s infinite;
 }
-button{
-padding:15px 25px;
-font-size:20px;
-border:none;
-border-radius:20px;
+
+p{
+font-size:1.3rem;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.05);}
+}
+
+.heart{
+position:absolute;
+top:-20px;
+font-size:25px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+opacity:0;
+}
 }
 </style>
 </head>
+
 <body>
 
+<div class="container">
 <h1>❤️ I Love You So Much Anshu ❤️</h1>
 
 <p>
-You make every day brighter and every moment special.
-</p>
+You make every day brighter.<br>
+You make every moment special.<br><br>
 
-<button onclick="playSong()">
-🎵 Play Our Song
-</button>
+No matter where life takes us,<br>
+you will always have a special place in my heart. ❤️
+</p>
+</div>
+
+<iframe
+width="0"
+height="0"
+src="https://www.youtube.com/embed/vGJTaP6anOU?autoplay=1&loop=1&playlist=vGJTaP6anOU"
+allow="autoplay">
+</iframe>
 
 <script>
-function playSong(){
-window.open(
-'https://youtu.be/vGJTaP6anOU?si=x_wuiXang4upFLGx',
-'_blank'
-);
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=
+(4+Math.random()*5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},9000);
+
 }
+
+setInterval(createHeart,250);
+
 </script>
 
 </body>
