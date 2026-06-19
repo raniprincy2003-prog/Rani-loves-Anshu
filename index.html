@@ -1,111 +1,281 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Anshu ❤️</title>
 
 <style>
-body{
+
+*{
 margin:0;
-overflow:hidden;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 height:100vh;
+overflow:hidden;
+font-family:'Trebuchet MS',sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
-font-family:Arial,sans-serif;
-background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+background:linear-gradient(
+-45deg,
+#ff4d6d,
+#ff758f,
+#b5179e,
+#7209b7,
+#560bad
+);
 background-size:400% 400%;
-animation:bg 10s ease infinite;
+animation:bgMove 15s ease infinite;
 }
 
-@keyframes bg{
+@keyframes bgMove{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
 }
 
-.container{
+.card{
+width:90%;
+max-width:700px;
+padding:40px;
 text-align:center;
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+
+border-radius:30px;
+
+box-shadow:
+0 0 30px rgba(255,255,255,.2),
+0 0 60px rgba(255,255,255,.1);
+
 z-index:10;
 color:white;
-padding:20px;
 }
 
-h1{
+.title{
 font-size:3rem;
-text-shadow:0 0 20px rgba(255,255,255,0.9);
+font-weight:bold;
+
+text-shadow:
+0 0 10px #fff,
+0 0 20px #ff69b4,
+0 0 40px #ff1493;
+
 animation:pulse 2s infinite;
 }
 
-p{
-font-size:1.3rem;
+@keyframes pulse{
+50%{
+transform:scale(1.05);
+}
 }
 
-@keyframes pulse{
-50%{transform:scale(1.05);}
+.message{
+margin-top:25px;
+font-size:1.4rem;
+line-height:1.8;
+opacity:0;
+max-height:0;
+overflow:hidden;
+transition:all 2s ease;
+}
+
+.message.show{
+opacity:1;
+max-height:500px;
+}
+
+button{
+margin-top:30px;
+
+padding:18px 35px;
+
+font-size:1.2rem;
+font-weight:bold;
+
+border:none;
+border-radius:50px;
+
+cursor:pointer;
+
+background:white;
+color:#ff4d6d;
+
+box-shadow:
+0 0 15px white,
+0 0 30px pink;
+
+transition:.4s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.heart,.flower{
+position:absolute;
+top:-50px;
+pointer-events:none;
+animation:fall linear forwards;
 }
 
 .heart{
-position:absolute;
-top:-20px;
 font-size:25px;
-animation:fall linear forwards;
+}
+
+.flower{
+font-size:22px;
 }
 
 @keyframes fall{
 to{
-transform:translateY(110vh);
+transform:translateY(120vh) rotate(360deg);
 opacity:0;
 }
 }
+
+.sparkle{
+position:absolute;
+font-size:18px;
+pointer-events:none;
+animation:spark 1.5s forwards;
+}
+
+@keyframes spark{
+0%{
+opacity:1;
+transform:scale(1);
+}
+100%{
+opacity:0;
+transform:scale(2);
+}
+}
+
+.footer{
+margin-top:30px;
+font-size:1rem;
+opacity:.9;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<h1>❤️ I Love You So Much Anshu ❤️</h1>
+<div class="card">
 
-<p>
-You make every day brighter.<br>
-You make every moment special.<br><br>
+<div class="title">
+❤️ I Love You So Much Anshu ❤️
+</div>
 
-No matter where life takes us,<br>
-you will always have a special place in my heart. ❤️
-</p>
+<button onclick="openHeart()" id="openBtn">
+💖 Open My Heart 💖
+</button>
+
+<div class="message" id="msg">
+
+Every time I think of you,
+my heart smiles. ❤️
+
+You make ordinary moments feel special,
+and your presence makes everything brighter.
+
+No matter where life takes us,
+you will always have a special place in my heart.
+
+❤️ Forever & Always ❤️
+
+</div>
+
+<div class="footer">
+Made with ❤️
+</div>
+
 </div>
 
 <iframe
+id="music"
 width="0"
 height="0"
-src="https://www.youtube.com/embed/vGJTaP6anOU?autoplay=1&loop=1&playlist=vGJTaP6anOU"
 allow="autoplay">
 </iframe>
 
 <script>
 
-function createHeart(){
+function openHeart(){
 
-const heart=document.createElement("div");
+document.getElementById("openBtn").style.display="none";
 
-heart.className="heart";
+document.getElementById("msg").classList.add("show");
 
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.animationDuration=
-(4+Math.random()*5)+"s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},9000);
+document.getElementById("music").src=
+"https://www.youtube.com/embed/vGJTaP6anOU?autoplay=1&loop=1&playlist=vGJTaP6anOU";
 
 }
 
-setInterval(createHeart,250);
+function createHeart(){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDuration=
+(5+Math.random()*5)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),10000);
+
+}
+
+function createFlower(){
+
+let f=document.createElement("div");
+
+f.className="flower";
+
+f.innerHTML="🌹";
+
+f.style.left=Math.random()*100+"vw";
+
+f.style.animationDuration=
+(7+Math.random()*5)+"s";
+
+document.body.appendChild(f);
+
+setTimeout(()=>f.remove(),12000);
+
+}
+
+setInterval(createHeart,300);
+setInterval(createFlower,800);
+
+document.addEventListener("click",(e)=>{
+
+let s=document.createElement("div");
+
+s.className="sparkle";
+
+s.innerHTML="✨";
+
+s.style.left=e.pageX+"px";
+s.style.top=e.pageY+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),1500);
+
+});
 
 </script>
 
