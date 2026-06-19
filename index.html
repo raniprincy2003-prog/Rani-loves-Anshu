@@ -1,283 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>For Anshu ❤️</title>
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
 height:100vh;
 overflow:hidden;
-font-family:'Trebuchet MS',sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(
--45deg,
-#ff4d6d,
-#ff758f,
-#b5179e,
-#7209b7,
-#560bad
-);
-background-size:400% 400%;
-animation:bgMove 15s ease infinite;
+font-family:Arial,sans-serif;
+color:white;
 }
-
-@keyframes bgMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+.bg{
+position:fixed;
+inset:0;
+background:url('IMG-20250830-WA0016.jpeg') center/cover;
+filter:blur(12px) brightness(.35);
+z-index:-2;
 }
-
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,
+rgba(255,0,120,.25),
+rgba(128,0,255,.25));
+z-index:-1;
+}
 .card{
 width:90%;
 max-width:700px;
-padding:40px;
+padding:30px;
 text-align:center;
-
-background:rgba(255,255,255,0.15);
+background:rgba(255,255,255,.12);
 backdrop-filter:blur(12px);
-
-border-radius:30px;
-
-box-shadow:
-0 0 30px rgba(255,255,255,.2),
-0 0 60px rgba(255,255,255,.1);
-
-z-index:10;
-color:white;
+border-radius:25px;
 }
-
-.title{
-font-size:3rem;
-font-weight:bold;
-
-text-shadow:
-0 0 10px #fff,
-0 0 20px #ff69b4,
-0 0 40px #ff1493;
-
-animation:pulse 2s infinite;
+.photo{
+width:220px;
+height:220px;
+object-fit:cover;
+border-radius:50%;
+border:5px solid white;
+box-shadow:0 0 25px pink;
+animation:float 4s infinite ease-in-out;
 }
-
-@keyframes pulse{
-50%{
-transform:scale(1.05);
+@keyframes float{
+50%{transform:translateY(-10px)}
 }
+h1{
+margin-top:20px;
+font-size:2.5rem;
+text-shadow:0 0 20px hotpink;
 }
-
-.message{
-margin-top:25px;
-font-size:1.4rem;
-line-height:1.8;
-opacity:0;
-max-height:0;
-overflow:hidden;
-transition:all 2s ease;
-}
-
-.message.show{
-opacity:1;
-max-height:500px;
-}
-
 button{
-margin-top:30px;
-
-padding:18px 35px;
-
-font-size:1.2rem;
-font-weight:bold;
-
+margin-top:20px;
+padding:15px 30px;
+font-size:18px;
 border:none;
-border-radius:50px;
-
+border-radius:40px;
 cursor:pointer;
-
 background:white;
-color:#ff4d6d;
-
-box-shadow:
-0 0 15px white,
-0 0 30px pink;
-
-transition:.4s;
+color:#ff4081;
+font-weight:bold;
 }
-
-button:hover{
-transform:scale(1.08);
+.message{
+display:none;
+margin-top:20px;
+font-size:1.2rem;
+line-height:1.8;
 }
-
-.heart,.flower{
+.heart,.rose{
 position:absolute;
 top:-50px;
-pointer-events:none;
 animation:fall linear forwards;
 }
-
-.heart{
-font-size:25px;
-}
-
-.flower{
-font-size:22px;
-}
-
 @keyframes fall{
 to{
 transform:translateY(120vh) rotate(360deg);
 opacity:0;
 }
 }
-
-.sparkle{
-position:absolute;
-font-size:18px;
-pointer-events:none;
-animation:spark 1.5s forwards;
-}
-
-@keyframes spark{
-0%{
-opacity:1;
-transform:scale(1);
-}
-100%{
-opacity:0;
-transform:scale(2);
-}
-}
-
-.footer{
-margin-top:30px;
-font-size:1rem;
-opacity:.9;
-}
-
 </style>
 </head>
-
 <body>
-
+<div class="bg"></div>
+<div class="overlay"></div>
 <div class="card">
-
-<div class="title">
-❤️ I Love You So Much Anshu ❤️
-</div>
-
-<button onclick="openHeart()" id="openBtn">
-💖 Open My Heart 💖
+<img src="IMG-20250830-WA0016.jpeg" class="photo">
+<h1>❤️ I Love You So Much Anshu ❤️</h1>
+<button onclick="openHeart()">
+💖 Unlock My Heart 💖
 </button>
-
 <div class="message" id="msg">
+Every day with you feels brighter. ❤️<br><br>
 
-Every time I think of you,
-my heart smiles. ❤️
+Every moment with you feels special.
 
-You make ordinary moments feel special,
-and your presence makes everything brighter.
+Your smile makes ordinary days beautiful.
 
-No matter where life takes us,
-you will always have a special place in my heart.
-
-❤️ Forever & Always ❤️
+🌹 Forever & Always 🌹
 
 </div>
-
-<div class="footer">
-Made with ❤️
 </div>
-
-</div>
-
-<iframe
-id="music"
-width="0"
-height="0"
-allow="autoplay">
-</iframe>
-
+<audio id="music" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
 <script>
-
 function openHeart(){
-
-document.getElementById("openBtn").style.display="none";
-
-document.getElementById("msg").classList.add("show");
-
-document.getElementById("music").src=
-"https://www.youtube.com/embed/vGJTaP6anOU?autoplay=1&loop=1&playlist=vGJTaP6anOU";
-
+document.getElementById("msg").style.display="block";
+document.getElementById("music").play();
 }
-
-function createHeart(){
-
+function heart(){
 let h=document.createElement("div");
-
 h.className="heart";
-
 h.innerHTML="❤️";
-
 h.style.left=Math.random()*100+"vw";
-
-h.style.animationDuration=
-(5+Math.random()*5)+"s";
-
+h.style.fontSize=(20+Math.random()*20)+"px";
+h.style.animationDuration=(5+Math.random()*5)+"s";
 document.body.appendChild(h);
-
 setTimeout(()=>h.remove(),10000);
-
 }
-
-function createFlower(){
-
-let f=document.createElement("div");
-
-f.className="flower";
-
-f.innerHTML="🌹";
-
-f.style.left=Math.random()*100+"vw";
-
-f.style.animationDuration=
-(7+Math.random()*5)+"s";
-
-document.body.appendChild(f);
-
-setTimeout(()=>f.remove(),12000);
-
+function rose(){
+let r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.fontSize=(18+Math.random()*15)+"px";
+r.style.animationDuration=(6+Math.random()*5)+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),11000);
 }
-
-setInterval(createHeart,300);
-setInterval(createFlower,800);
-
-document.addEventListener("click",(e)=>{
-
-let s=document.createElement("div");
-
-s.className="sparkle";
-
-s.innerHTML="✨";
-
-s.style.left=e.pageX+"px";
-s.style.top=e.pageY+"px";
-
-document.body.appendChild(s);
-
-setTimeout(()=>s.remove(),1500);
-
-});
-
+setInterval(heart,250);
+setInterval(rose,700);
 </script>
-
 </body>
 </html>
